@@ -10,6 +10,13 @@ import java.util.Random;
 //imprimo un mensaje de quien soy cuanto peso y lo que hay en el puente actualmente
 //bucle() mientras no este autorizado vere si estoy autorizado = metodo
 //si no estoy autorizado muestro un mensaje y espero
+//Calculo el timpo que voy a tardar en cruzar el puetne , simulo que cruzo el puente
+
+//lamar a salir del puente informo que he salido del puente
+
+//tendre que simular que personas estan pasando por el puente , bucle infinito
+//calacula el timempo para que pase la siguiente persona
+//crea el hilo y lanzo la persona al puente
 public class Persona implements Runnable{
     private static  int peso = 200;
     private static  int personas = 3;
