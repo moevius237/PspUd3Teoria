@@ -17,26 +17,76 @@ import java.util.Random;
 //tendre que simular que personas estan pasando por el puente , bucle infinito
 //calacula el timempo para que pase la siguiente persona
 //crea el hilo y lanzo la persona al puente
-public class Persona implements Runnable{
-    private static  int peso = 200;
-    private static  int personas = 3;
+class Persona implements Runnable{
+    private static int peso;
+    private final int personas;
+
+    private final int tMinPaso, tMaxPso;
+
+    private final Puente puente;
+
+    public Persona(int peso, int personas,int tMinPaso, int tMaxPso, Puente puente) {
+        this.peso = peso;
+        this.personas = personas;
+        this.tMinPaso = tMinPaso;
+        this.tMaxPso = tMaxPso;
+        this.puente = puente;
+    }
+
 
     public static int getPeso() {
         return peso;
     }
 
-    public static int getPersonas() {
-        return personas;
-    }
-
-    public Persona(int peso) {
-        this.peso = peso;
-    }
-
-
     @Override
     public void run() {
+        System.out.println("soy la persona " + personas + "Quiero cruzar con peso"
+        + peso + "En el puente ahora hay" + puente);
+        boolean autorizado = false;
+        while (autorizado){
+            synchronized (this.puente){
+            if(!autorizado){
+                System.out.println(personas + "debe esoerar");
+                try {
+                    this.puente.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            }
+        }
+        System.out.println(personas + "con peso" + peso + "puede cruzar el puente");
+
         Random r = new Random();
-        peso = r.nextInt(100);
+        int tiempopaso = r.nextInt(tMinPaso, tMaxPso);
+        try {
+            Thread.sleep(tiempopaso);
+        } catch (InterruptedException e) {
+        }
+        synchronized (this.puente){
+        }
+    }
+}
+class PasoPorPuente{
+    public static void main(String[] args) {
+        final Puente puente = new Puente();
+        Random random = new Random();
+        int paso = 10;
+        int maxpaso = 50;
+        int idpesona = 1;
+
+        while (true){
+
+            int tLlegadaPuente = random.nextInt(1000,3001);
+            try {
+                Thread.sleep(tLlegadaPuente);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            int peso = random.nextInt(40,121);
+
+            //Thread th1 = new Persona(new Persona(idpesona,peso,paso,maxpaso));
+            idpesona++;
+        }
     }
 }

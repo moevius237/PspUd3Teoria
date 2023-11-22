@@ -18,7 +18,7 @@ public class Puente {
     private  int peso = 0;
     private int numperso = 0;
 
-    private boolean autorizacinPaso(Persona persona){
+    private synchronized boolean autorizacinPaso(Persona persona){
     if ((Persona.getPeso() + this.peso) > kgmax || numperso < persomax){
         numperso++;
         peso+=Persona.getPeso();
@@ -26,7 +26,7 @@ public class Puente {
     }
         return false;
     }
-    private  void salirPuente(Persona persona){
+    private synchronized void salirPuente(Persona persona){
         numperso--;
         peso -= Persona.getPeso();
     }

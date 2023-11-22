@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dinero {
     private int dinero = 0;
-    private int ceint= 0;
+    private int conta= 0;
     private Random rr = new Random();
 
     public Dinero(int dinero) {
@@ -16,15 +16,15 @@ public class Dinero {
     }
 
     public synchronized int trabajar(){
-        ceint =ceint +  rr.nextInt(31)+10;
-      this.dinero= ceint;
-        return ceint;
+        conta =conta +  rr.nextInt(31)+10;
+      this.dinero= conta;
+        return conta;
     }
     public synchronized int robar(){
-        ceint = ceint-rr.nextInt(30);
+        conta = conta-rr.nextInt(30);
 
-        this.dinero = ceint;
-        return ceint ;
+        this.dinero = conta;
+        return conta ;
     }
 
 }

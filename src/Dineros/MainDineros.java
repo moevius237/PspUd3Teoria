@@ -2,6 +2,7 @@ package Dineros;
 
 import java.util.Random;
 
+//
 public class MainDineros {
     private static final int NUM_HILOS_TRABAJO = 1;
     private static final int NUM_HILOS_LADRONES = 3;
