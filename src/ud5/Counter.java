@@ -6,7 +6,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+/*
+Ud3:
+-Creacion de hilos extendio THread, implements Runnable ,hilo anonimo
+-Join , interrupted
+Ud4:
+
+ */
 public class Counter implements Runnable{
+    //ejemplos de como se hace
+    public static void main(String[] args) {
+        Thread t = new Thread(){
+            @Override
+            public void run() {
+            //    while (this.isInterrupted()){
+
+              //  }
+            }
+        };
+        Runnable r = new Runnable(){
+            @Override
+            public void run() {
+                while (Thread.currentThread().isAlive()){
+                    System.out.println("vivo");
+                }
+            }
+        };
+
+        Thread t2 = new Thread(r);
+        t2.start();
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        // t.run(); //Este no se usa nunca
+        //t2.interrupt();
+
+    }
+
     @Override
     public void run() {
         for (int i = 10; i > 0; i--) {
