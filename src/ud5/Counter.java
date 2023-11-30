@@ -72,7 +72,8 @@ class MainExcutor{
             sum+=i;
         }
         System.out.println(color +Thread.currentThread().getName()+ " "+sum);
-        return sum;
+
+   return sum;
     }
     public static void main(String[] args) {
       /*  ExecutorService executor =
@@ -129,7 +130,7 @@ class MainExcutor{
             try {
                 List<Future<Integer>> resultList = executor.invokeAll(tasklist);
                 Future<Integer> resultado = executor.submit(c);
-            System.out.println(resultado.get());
+           System.out.println(resultado.get());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (ExecutionException e) {
